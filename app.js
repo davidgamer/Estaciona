@@ -6,10 +6,10 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
 
-// Connect To Database
+
 mongoose.connect(config.database);
 
-// On Connection
+
 mongoose.connection.on('connected', () => {
   console.log('Connected to database '+config.database);
 });
@@ -24,7 +24,7 @@ const app = express();
 const users = require('./routes/users');
 
 // Port Number
-const port = process.env.PORT || 8080;
+const port = 3000;
 
 // CORS Middleware
 app.use(cors());
@@ -45,11 +45,7 @@ app.use('/users', users);
 
 // Index Route
 app.get('/', (req, res) => {
-  res.send('Invalid Endpoint');
-});
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'));
+  res.send('Endpoint invalido');
 });
 
 // Start Server
